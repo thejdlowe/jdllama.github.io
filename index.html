@@ -1,1 +1,149 @@
-Hi!
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+J.D. Lowe's Portfolio
+</title>
+<style type="text/css">
+html {
+	background-color: steelblue;
+	background-position: initial initial;
+	background-repeat: initial initial;
+	font-family: 'Roboto', sans-serif;
+	overflow-y: hidden;
+}
+
+#tabs {
+	position: absolute;
+	top: 0px;
+	left: 0x
+	height: 30px;
+}
+
+#tabs a {
+	color: black;
+	background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
+	font-size: 12px;
+	border: 1px solid lightgray;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	text-decoration: none;
+	display: inline-block;
+	vertical-align:middle;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#tabs a.active {
+	color: white;
+	background: linear-gradient(to bottom, #0080e2 0%,#1e5799 100%);
+	border-bottom: 1px solid #1e5799;
+	text-shadow:0 -1px 1px rgba(0,0,0,0.5);
+}
+
+#container {
+	border: 1px solid gray;
+	border-top: 5px solid #1e5799;
+	position: absolute;
+	top: 26px;
+	bottom: 0px;
+	overflow-y:auto;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	background-color: white;
+	width: 100%;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+</style>
+<script src="scripts/jquery.js"></script>
+<script>
+$(window).ready(function() {
+	$('#tabs').each(function(){
+		// For each set of tabs, we want to keep track of
+		// which tab is active and it's associated content
+		var $active, $content, $links = $(this).find('a'), $spans = $(this).children().find("span");
+
+		// If the location.hash matches one of the links, use that as the active tab.
+		// If no match is found, use the first link as the initial active tab.
+		$active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+		$active.addClass('active');
+		$content = $($active.attr('href'));
+		$spans.css("color", "black");
+		$active.parent().find("span").css("color", "white");
+
+		// Hide the remaining content
+		$links.not($active).each(function () {
+			$($(this).attr('href')).hide();
+		});
+
+		// Bind the click event handler
+		$(this).on('click', 'a', function(e){
+			// Make the old tab inactive.
+			$active.removeClass('active');
+			$active.parent().find("span").css("color", "black");
+			$content.hide();
+
+			// Update the variables with the new link and content
+			$active = $(this);
+			$content = $($(this).attr('href'));
+
+			// Make the tab active.
+			$active.addClass('active');
+			$active.parent().find("span").css("color", "white");
+			$content.show();
+
+			// Prevent the anchor's default click action
+			e.preventDefault();
+		});
+	});
+	
+	//$("#container").css(
+});
+</script>
+</head>
+<body>
+<div id="tabs">
+<span class="tab"><a href="#price">WenAMPT</a></span>
+<span class="tab"><a href="#sorcery">Sorcery</a></span>
+<span class="tab"><a href="#hypersplode">Hypersplode</a></span>
+<span class="tab"><a href="#getelected">Get Elected!</a></span>
+</div>
+<div id="container">
+<div class="content" id="price">
+<center>
+<img src="images/price1.png" style="width: 780px"/><br />
+<img src="images/price2.png" style="width: 780px"/><br />
+<img src="images/price3.png" style="width: 780px"/><br />
+<img src="images/price4.png" style="width: 780px"/>
+</center>
+</div>
+<div class="content" id="sorcery">
+<center>
+Partial source code available at <a href="https://github.com/jdllama/Sorcery" target="_blank">https://github.com/jdllama/Sorcery</a><br />
+<img src="images/sorcery1.png" style="width: 780px"/><br />
+<img src="images/sorcery2.png" style="width: 780px"/><br />
+<img src="images/sorcery3.png" style="width: 780px"/><br />
+<img src="images/sorcery4.png" style="width: 780px"/>
+</center>
+</div>
+<div class="content" id="hypersplode">
+<center>
+Source code available at <a href="https://github.com/jdllama/Hypersplode" target="_blank">https://github.com/jdllama/Hypersplode</a><br />
+<img src="images/hypersplode1.png" style="width: 780px"/><br />
+<img src="images/hypersplode2.png" style="width: 780px"/><br />
+<img src="images/hypersplode3.png" style="width: 780px"/>
+</center>
+</div>
+<div class="content" id="getelected">
+<center>
+Game can actually be played at <a href="http://gdriv.es/getelected" target="_blank">http://gdriv.es/getelected</a><br />
+<br />
+Source code available at <a href="https://github.com/jdllama/GetElected" target="_blank">https://github.com/jdllama/GetElected</a>
+</center>
+</div>
+</div>
+</body>
+</html>
