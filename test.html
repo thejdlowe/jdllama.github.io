@@ -20,9 +20,12 @@ getCanvasFingerprint = function () {
       ctx.fillText(txt, 2, 15);
       ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
       ctx.fillText(txt, 4, 17);
-      return canvas.toDataURL();
+      return canvas.toDataURL();//.replace("data:image/png;base64,","");
     }
-	document.write(getCanvasFingerprint());
+	var x = getCanvasFingerprint();
+	x = x.replace("data:image/png;base64,","");
+	document.write(x.slice(-16, -12));
+	//alert(atob(getCanvasFingerprint()));
 </script>
 </body>
 </html>
