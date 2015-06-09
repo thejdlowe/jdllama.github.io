@@ -158,12 +158,12 @@ $(function onLoad() {
 			score: temp
 		});
 		
-		$("[JD=true]").remove();
+		$(".removeMe").remove();
 		svg.append("svg:path")
 			.attr("d", lineGen(capturedData))
 			.attr("stroke", "green")
 			.attr("stroke-width", 2)
-			.attr("JD", true)
+			.attr("class", "removeMe")
 			.attr("fill", "none");
 		
 		currentInc += (1/FPS);
