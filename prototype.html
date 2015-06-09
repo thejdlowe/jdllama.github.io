@@ -1,0 +1,169 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Prototype Game Trainer
+</title>
+<style type="text/css">
+path {
+				stroke-width: 1;
+				fill: none;
+			}
+			
+			.data1 {
+				stroke: steelblue;
+			}
+
+			.data2 {
+				stroke: orange;
+			}
+
+			.axis {
+			  shape-rendering: crispEdges;
+			}
+
+			.x.axis line {
+			  stroke: lightgrey;
+			}
+
+			.x.axis .minor {
+			  stroke-opacity: .5;
+			}
+
+			.x.axis path {
+			  display: none;
+			}
+			
+			.x.axis text {
+				font-size: 14;
+			}
+
+			.y.axis line, .y.axis path {
+			  fill: none;
+			  stroke: #000;
+			}
+
+			.y.axis text {
+				font-size: 14;
+			}
+
+			.y.axisRight text {
+				fill: orange;
+			}
+			
+			.y.axisLeft text {
+				fill: steelblue;
+			}
+</style>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+</head>
+<body>
+<script>
+$(function onLoad() {
+	var svg = d3.select("#gameScreen").append("svg"),
+		scoreboard = $("<div>").appendTo("body"),
+		margin = {top: 20, right: 20, bottom: 30, left: 50},
+		width = 1000,
+		height = 500,
+		xScale = d3.scale.linear().range([margin.left, width - margin.right]).domain([0,60]),
+		yScale = d3.scale.linear().range([height - margin.top, margin.bottom]).domain([0,10]),
+		xAxis = d3.svg.axis().scale(xScale),
+		yAxis = d3.svg.axis().scale(yScale).orient("left");
+	svg.attr("width", width).attr("height", height);
+	svg.append("svg:g")
+		.attr("class","axis")
+		.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+		.call(xAxis);
+		
+	svg.append("svg:g")
+		.attr("class","axis")
+		.attr("transform", "translate(" + (margin.left) + ",0)")
+		.call(yAxis);
+		
+	var lineGen = d3.svg.line()
+		.x(function(data) {
+			return xScale(data.time);
+		})
+		.y(function(data) {
+			return yScale(data.score);
+		});
+		
+	var currentCount = 0;
+	var currentInc = 0;
+	var capturedData = [];
+	var total = 0;
+	var FPS = 4;
+	
+	var collectorTimer = null;
+	
+	function trapButton(e) {
+		e.preventDefault();
+		if(e.keyCode == 32) {
+			currentCount++;
+			total++;
+			scoreboard.html("Total: " + total);
+		}
+	}
+	
+	function collectButton() {
+		if(currentInc > 60) {
+			clearInterval(collectorTimer);
+			$(document).unbind("keyup", trapButton);
+			var name = prompt("Please enter your name:", "");
+			var t = [];
+			if(localStorage["scoreboard60"]) t = JSON.parse(localStorage["scoreboard60"]);
+			t.push({
+				name: name,
+				date: (new Date()).toLocaleString(),
+				total: total,
+				data: capturedData
+			});
+			t = t.sort(function(a,b) {
+				return a.total - b.total;
+			});
+			localStorage["scoreboard60"] = JSON.stringify(t);
+			
+			scoreboard.html("Total: " + total);
+			return;
+		}
+		var temp = currentCount;
+		currentCount = 0;
+		capturedData.push({
+			time: currentInc,
+			total: total,
+			score: temp
+		});
+		
+		$("[JD=true]").remove();
+		svg.append("svg:path")
+			.attr("d", lineGen(capturedData))
+			.attr("stroke", "green")
+			.attr("stroke-width", 2)
+			.attr("JD", true)
+			.attr("fill", "none");
+		
+		currentInc += (1/FPS);
+	}
+	
+	$("#startScreen, #gameScreen").hide();
+	$("#startScreen").show();
+	$("#starter").click(function(e) {
+		$("#startScreen, #gameScreen").hide();
+		$("#gameScreen").show().focus();
+		$(document).bind("keyup", trapButton);
+		currentInc = 0;
+		total = 0;
+		scoreboard.html("Total: " + total);
+		collectorTimer = setInterval(collectButton, 1000/FPS);
+	});
+
+});
+</script>
+<div id="startScreen">
+<button id="starter">Start</button>
+</div>
+<div id="gameScreen">
+</div>
+</body>
+</html>
