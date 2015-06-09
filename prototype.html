@@ -5,55 +5,62 @@
 Prototype Game Trainer
 </title>
 <style type="text/css">
+#topTen {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+}
+
 path {
-				stroke-width: 1;
-				fill: none;
-			}
-			
-			.data1 {
-				stroke: steelblue;
-			}
+	stroke-width: 1;
+	fill: none;
+}
 
-			.data2 {
-				stroke: orange;
-			}
+.data1 {
+	stroke: steelblue;
+}
 
-			.axis {
-			  shape-rendering: crispEdges;
-			}
+.data2 {
+	stroke: orange;
+}
 
-			.x.axis line {
-			  stroke: lightgrey;
-			}
+.axis {
+  shape-rendering: crispEdges;
+}
 
-			.x.axis .minor {
-			  stroke-opacity: .5;
-			}
+.x.axis line {
+  stroke: lightgrey;
+}
 
-			.x.axis path {
-			  display: none;
-			}
-			
-			.x.axis text {
-				font-size: 14;
-			}
+.x.axis .minor {
+  stroke-opacity: .5;
+}
 
-			.y.axis line, .y.axis path {
-			  fill: none;
-			  stroke: #000;
-			}
+.x.axis path {
+  display: none;
+}
 
-			.y.axis text {
-				font-size: 14;
-			}
+.x.axis text {
+	font-size: 14;
+}
 
-			.y.axisRight text {
-				fill: orange;
-			}
-			
-			.y.axisLeft text {
-				fill: steelblue;
-			}
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: #000;
+}
+
+.y.axis text {
+	font-size: 14;
+}
+
+.y.axisRight text {
+	fill: orange;
+}
+
+.y.axisLeft text {
+	fill: steelblue;
+}
 </style>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
@@ -106,6 +113,18 @@ $(function onLoad() {
 		}
 	}
 	
+	if(!localStorage["scoreboard60"]) localStorage["scoreboard60"] = '[{"name":"J.D. Lowe","date":"6/8/2015, 11:05:56 PM","total":563,"data":[{"time":0,"total":2,"score":2},{"time":0.25,"total":4,"score":2},{"time":0.5,"total":6,"score":2},{"time":0.75,"total":9,"score":3},{"time":1,"total":11,"score":2},{"time":1.25,"total":14,"score":3},{"time":1.5,"total":16,"score":2},{"time":1.75,"total":19,"score":3},{"time":2,"total":21,"score":2},{"time":2.25,"total":24,"score":3},{"time":2.5,"total":27,"score":3},{"time":2.75,"total":29,"score":2},{"time":3,"total":32,"score":3},{"time":3.25,"total":34,"score":2},{"time":3.5,"total":37,"score":3},{"time":3.75,"total":40,"score":3},{"time":4,"total":42,"score":2},{"time":4.25,"total":45,"score":3},{"time":4.5,"total":48,"score":3},{"time":4.75,"total":50,"score":2},{"time":5,"total":52,"score":2},{"time":5.25,"total":55,"score":3},{"time":5.5,"total":58,"score":3},{"time":5.75,"total":61,"score":3},{"time":6,"total":63,"score":2},{"time":6.25,"total":66,"score":3},{"time":6.5,"total":69,"score":3},{"time":6.75,"total":71,"score":2},{"time":7,"total":74,"score":3},{"time":7.25,"total":77,"score":3},{"time":7.5,"total":79,"score":2},{"time":7.75,"total":82,"score":3},{"time":8,"total":84,"score":2},{"time":8.25,"total":87,"score":3},{"time":8.5,"total":90,"score":3},{"time":8.75,"total":91,"score":1},{"time":9,"total":94,"score":3},{"time":9.25,"total":96,"score":2},{"time":9.5,"total":99,"score":3},{"time":9.75,"total":101,"score":2},{"time":10,"total":104,"score":3},{"time":10.25,"total":107,"score":3},{"time":10.5,"total":109,"score":2},{"time":10.75,"total":112,"score":3},{"time":11,"total":115,"score":3},{"time":11.25,"total":118,"score":3},{"time":11.5,"total":120,"score":2},{"time":11.75,"total":123,"score":3},{"time":12,"total":126,"score":3},{"time":12.25,"total":128,"score":2},{"time":12.5,"total":131,"score":3},{"time":12.75,"total":133,"score":2},{"time":13,"total":136,"score":3},{"time":13.25,"total":138,"score":2},{"time":13.5,"total":141,"score":3},{"time":13.75,"total":144,"score":3},{"time":14,"total":146,"score":2},{"time":14.25,"total":149,"score":3},{"time":14.5,"total":152,"score":3},{"time":14.75,"total":154,"score":2},{"time":15,"total":157,"score":3},{"time":15.25,"total":159,"score":2},{"time":15.5,"total":162,"score":3},{"time":15.75,"total":164,"score":2},{"time":16,"total":167,"score":3},{"time":16.25,"total":169,"score":2},{"time":16.5,"total":172,"score":3},{"time":16.75,"total":174,"score":2},{"time":17,"total":177,"score":3},{"time":17.25,"total":178,"score":1},{"time":17.5,"total":181,"score":3},{"time":17.75,"total":183,"score":2},{"time":18,"total":186,"score":3},{"time":18.25,"total":188,"score":2},{"time":18.5,"total":190,"score":2},{"time":18.75,"total":193,"score":3},{"time":19,"total":195,"score":2},{"time":19.25,"total":198,"score":3},{"time":19.5,"total":200,"score":2},{"time":19.75,"total":203,"score":3},{"time":20,"total":205,"score":2},{"time":20.25,"total":208,"score":3},{"time":20.5,"total":210,"score":2},{"time":20.75,"total":213,"score":3},{"time":21,"total":215,"score":2},{"time":21.25,"total":218,"score":3},{"time":21.5,"total":220,"score":2},{"time":21.75,"total":223,"score":3},{"time":22,"total":225,"score":2},{"time":22.25,"total":227,"score":2},{"time":22.5,"total":227,"score":0},{"time":22.75,"total":230,"score":3},{"time":23,"total":232,"score":2},{"time":23.25,"total":235,"score":3},{"time":23.5,"total":237,"score":2},{"time":23.75,"total":240,"score":3},{"time":24,"total":242,"score":2},{"time":24.25,"total":245,"score":3},{"time":24.5,"total":247,"score":2},{"time":24.75,"total":249,"score":2},{"time":25,"total":252,"score":3},{"time":25.25,"total":254,"score":2},{"time":25.5,"total":257,"score":3},{"time":25.75,"total":259,"score":2},{"time":26,"total":261,"score":2},{"time":26.25,"total":264,"score":3},{"time":26.5,"total":266,"score":2},{"time":26.75,"total":269,"score":3},{"time":27,"total":271,"score":2},{"time":27.25,"total":274,"score":3},{"time":27.5,"total":276,"score":2},{"time":27.75,"total":278,"score":2},{"time":28,"total":281,"score":3},{"time":28.25,"total":283,"score":2},{"time":28.5,"total":285,"score":2},{"time":28.75,"total":287,"score":2},{"time":29,"total":290,"score":3},{"time":29.25,"total":291,"score":1},{"time":29.5,"total":293,"score":2},{"time":29.75,"total":295,"score":2},{"time":30,"total":297,"score":2},{"time":30.25,"total":300,"score":3},{"time":30.5,"total":302,"score":2},{"time":30.75,"total":304,"score":2},{"time":31,"total":305,"score":1},{"time":31.25,"total":307,"score":2},{"time":31.5,"total":310,"score":3},{"time":31.75,"total":311,"score":1},{"time":32,"total":312,"score":1},{"time":32.25,"total":312,"score":0},{"time":32.5,"total":314,"score":2},{"time":32.75,"total":316,"score":2},{"time":33,"total":318,"score":2},{"time":33.25,"total":321,"score":3},{"time":33.5,"total":322,"score":1},{"time":33.75,"total":324,"score":2},{"time":34,"total":326,"score":2},{"time":34.25,"total":328,"score":2},{"time":34.5,"total":330,"score":2},{"time":34.75,"total":332,"score":2},{"time":35,"total":335,"score":3},{"time":35.25,"total":337,"score":2},{"time":35.5,"total":340,"score":3},{"time":35.75,"total":342,"score":2},{"time":36,"total":345,"score":3},{"time":36.25,"total":347,"score":2},{"time":36.5,"total":350,"score":3},{"time":36.75,"total":352,"score":2},{"time":37,"total":355,"score":3},{"time":37.25,"total":357,"score":2},{"time":37.5,"total":360,"score":3},{"time":37.75,"total":362,"score":2},{"time":38,"total":365,"score":3},{"time":38.25,"total":367,"score":2},{"time":38.5,"total":369,"score":2},{"time":38.75,"total":370,"score":1},{"time":39,"total":371,"score":1},{"time":39.25,"total":374,"score":3},{"time":39.5,"total":376,"score":2},{"time":39.75,"total":378,"score":2},{"time":40,"total":379,"score":1},{"time":40.25,"total":381,"score":2},{"time":40.5,"total":383,"score":2},{"time":40.75,"total":385,"score":2},{"time":41,"total":387,"score":2},{"time":41.25,"total":390,"score":3},{"time":41.5,"total":390,"score":0},{"time":41.75,"total":393,"score":3},{"time":42,"total":395,"score":2},{"time":42.25,"total":397,"score":2},{"time":42.5,"total":399,"score":2},{"time":42.75,"total":401,"score":2},{"time":43,"total":403,"score":2},{"time":43.25,"total":406,"score":3},{"time":43.5,"total":408,"score":2},{"time":43.75,"total":410,"score":2},{"time":44,"total":412,"score":2},{"time":44.25,"total":415,"score":3},{"time":44.5,"total":417,"score":2},{"time":44.75,"total":419,"score":2},{"time":45,"total":421,"score":2},{"time":45.25,"total":424,"score":3},{"time":45.5,"total":426,"score":2},{"time":45.75,"total":428,"score":2},{"time":46,"total":431,"score":3},{"time":46.25,"total":433,"score":2},{"time":46.5,"total":436,"score":3},{"time":46.75,"total":439,"score":3},{"time":47,"total":441,"score":2},{"time":47.25,"total":443,"score":2},{"time":47.5,"total":446,"score":3},{"time":47.75,"total":448,"score":2},{"time":48,"total":450,"score":2},{"time":48.25,"total":453,"score":3},{"time":48.5,"total":455,"score":2},{"time":48.75,"total":457,"score":2},{"time":49,"total":459,"score":2},{"time":49.25,"total":462,"score":3},{"time":49.5,"total":464,"score":2},{"time":49.75,"total":466,"score":2},{"time":50,"total":468,"score":2},{"time":50.25,"total":469,"score":1},{"time":50.5,"total":472,"score":3},{"time":50.75,"total":474,"score":2},{"time":51,"total":477,"score":3},{"time":51.25,"total":479,"score":2},{"time":51.5,"total":481,"score":2},{"time":51.75,"total":484,"score":3},{"time":52,"total":486,"score":2},{"time":52.25,"total":489,"score":3},{"time":52.5,"total":491,"score":2},{"time":52.75,"total":494,"score":3},{"time":53,"total":496,"score":2},{"time":53.25,"total":498,"score":2},{"time":53.5,"total":501,"score":3},{"time":53.75,"total":504,"score":3},{"time":54,"total":506,"score":2},{"time":54.25,"total":509,"score":3},{"time":54.5,"total":511,"score":2},{"time":54.75,"total":514,"score":3},{"time":55,"total":516,"score":2},{"time":55.25,"total":518,"score":2},{"time":55.5,"total":521,"score":3},{"time":55.75,"total":523,"score":2},{"time":56,"total":526,"score":3},{"time":56.25,"total":528,"score":2},{"time":56.5,"total":531,"score":3},{"time":56.75,"total":533,"score":2},{"time":57,"total":536,"score":3},{"time":57.25,"total":538,"score":2},{"time":57.5,"total":541,"score":3},{"time":57.75,"total":543,"score":2},{"time":58,"total":546,"score":3},{"time":58.25,"total":548,"score":2},{"time":58.5,"total":550,"score":2},{"time":58.75,"total":553,"score":3},{"time":59,"total":555,"score":2},{"time":59.25,"total":557,"score":2},{"time":59.5,"total":560,"score":3},{"time":59.75,"total":562,"score":2},{"time":60,"total":562,"score":0}]}]';
+	
+	function scoreboardBuilder() {
+		var scoreboardArr = JSON.parse(localStorage["scoreboard60"]);
+		$("#topTen").html("");
+		scoreboardArr.slice(0,10).forEach(function(score) {
+			var li = $("<li>");
+			li.html(score.total + " - " + score.name + " - " + score.date);
+			$("#topTen").append(li);
+		});
+	}
+	
 	function collectButton() {
 		if(currentInc > 60) {
 			clearInterval(collectorTimer);
@@ -120,11 +139,15 @@ $(function onLoad() {
 				data: capturedData
 			});
 			t = t.sort(function(a,b) {
-				return a.total - b.total;
+				return b.total - a.total;
 			});
 			localStorage["scoreboard60"] = JSON.stringify(t);
 			
 			scoreboard.html("Total: " + total);
+			scoreboard.append($("<div>Average: " + (total / 60) + " per second.</div>"));
+			scoreboard.append($("<div>Game over. Refresh page to play again.</div>"));
+			
+			scoreboardBuilder();
 			return;
 		}
 		var temp = currentCount;
@@ -151,6 +174,7 @@ $(function onLoad() {
 	$("#starter").click(function(e) {
 		$("#startScreen, #gameScreen").hide();
 		$("#gameScreen").show().focus();
+		scoreboardBuilder();
 		$(document).bind("keyup", trapButton);
 		currentInc = 0;
 		total = 0;
@@ -164,6 +188,8 @@ $(function onLoad() {
 <button id="starter">Start</button>
 </div>
 <div id="gameScreen">
+	<ol id="topTen">
+	</ol>
 </div>
 </body>
 </html>
