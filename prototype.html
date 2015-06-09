@@ -125,6 +125,8 @@ $(function onLoad() {
 		});
 	}
 	
+	var mainScoreBoard = JSON.parse(localStorage["scoreboard60"]);
+	
 	function collectButton() {
 		if(currentInc > 60) {
 			clearInterval(collectorTimer);
@@ -159,9 +161,17 @@ $(function onLoad() {
 		});
 		
 		$(".removeMe").remove();
+		
 		svg.append("svg:path")
 			.attr("d", lineGen(capturedData))
 			.attr("stroke", "green")
+			.attr("stroke-width", 2)
+			.attr("class", "removeMe")
+			.attr("fill", "none");
+			
+		svg.append("svg:path")
+			.attr("d", lineGen(mainScoreBoard[0].data.slice(0, capturedData.length)))
+			.attr("stroke", "blue")
 			.attr("stroke-width", 2)
 			.attr("class", "removeMe")
 			.attr("fill", "none");
