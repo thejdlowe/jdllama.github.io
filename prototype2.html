@@ -61,7 +61,7 @@ $(function onLoad() {
 	function chooseMenu(e) {
 		if(e.keyCode == 32) {
 			var currIndex = $("#mainMenu").slick("slickCurrentSlide");
-			console.log("curr", $("#mainMenu").slick());
+			console.log("curr", $("#mainMenu").find("[data-slick-index='" + currIndex + "']"));
 		}
 	}
 	readMenuModules(["modules/buttonMash.html","modules/comingSoon.html"]).done(function() {
