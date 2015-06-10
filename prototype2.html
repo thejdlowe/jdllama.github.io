@@ -69,6 +69,7 @@ $(function onLoad() {
 	
 	function chooseMenu(e) {
 		if(e.keyCode == 32) {
+		
 			var currIndex = $("#mainMenu").slick("slickCurrentSlide");
 			var currSlide = $("#mainMenu").find("[data-slick-index=" + currIndex + "]");
 			var id = currSlide.attr("data-id");
