@@ -24,6 +24,7 @@
 //# sourceMappingURL=/polyfills/promise-done-7.0.1.min.js.map
 
 $(function onLoad() {
+	var commands = {};
 	function readMenuModules(filenames) {
 		return Promise.all(filenames.map(readMenu));
 	}
@@ -36,10 +37,13 @@ $(function onLoad() {
 				var menu = d.find("menu");
 				var div = $("<div>");
 				div.html(menu.html());
+				div.attr("data-id", menu.attr("id"));
 				$("#mainMenu").append(div);
 				fulfill();
 			});
 		});
+	}
+	function chooseMenu(e) {
 	}
 	readMenuModules(["modules/buttonMash.html","modules/comingSoon.html"]).done(function() {
 		$("#mainMenu").slick({
@@ -48,6 +52,7 @@ $(function onLoad() {
 			arrows: false,
 			centerPadding: "160px"
 		});
+		$(document).bind("keyup", chooseMenu);
 	});
 });
 </script>
