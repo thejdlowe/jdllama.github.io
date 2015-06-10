@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<link rel="stylesheet" type="text/css" href="slick-1.5.0/slick/slick.css"/>
+<script src="scripts/jquery-1.11.3.min.js"></script>
+<script src="slick-1.5.0/slick/slick.min.js"></script>
+<script>
+"function"!=typeof Promise.prototype.done&&(Promise.prototype.done=function(t,n){var o=arguments.length?this.then.apply(this,arguments):this;o.then(null,function(t){setTimeout(function(){throw t},0)})});
+//# sourceMappingURL=/polyfills/promise-done-7.0.1.min.js.map
+
+$(function onLoad() {
+	function readMenuModules(filenames) {
+		return Promise.all(filenames.map(readMenu));
+	}
+	function readMenu(filename) {
+		//console.log(filename)
+		return new Promise(function(fulfill, reject) {
+			//console.log(filename);
+			//fulfill();
+			$.ajax({
+				url: filename
+			}).done(function(data) {
+				console.log(data);
+				fulfill();
+			});
+		});
+	}
+	readMenuModules(["modules/buttonMash.html"]).done(function() {
+		console.log("Done");
+	});
+});
+</script>
+</head>
+<body>
+<div id="mainMenu">
+</div>
+</body>
+</html>
