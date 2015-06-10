@@ -24,7 +24,15 @@
 //# sourceMappingURL=/polyfills/promise-done-7.0.1.min.js.map
 
 $(function onLoad() {
-	var commands = {};
+	var escapeFunction = function() {
+	}
+	
+	function toMainMenu() {
+		$("#gameFields").children().hide();
+		$("#mainMenu").show();
+		escapeFunction = function() {
+		}
+	}
 	function readMenuModules(filenames) {
 		return Promise.all(filenames.map(readMenu));
 	}
@@ -43,7 +51,18 @@ $(function onLoad() {
 			});
 		});
 	}
+	
+	function escaper(e) {
+		if(e.keyCode == 27) {
+			escapeFunction();
+		}
+	}
+	
 	function chooseMenu(e) {
+		if(e.keyCode == 32) {
+			var curr = $("#mainMenu").slick("slickCurrentSlide");
+			console.log("curr", curr);
+		}
 	}
 	readMenuModules(["modules/buttonMash.html","modules/comingSoon.html"]).done(function() {
 		$("#mainMenu").slick({
@@ -52,13 +71,15 @@ $(function onLoad() {
 			arrows: false,
 			centerPadding: "160px"
 		});
-		$(document).bind("keyup", chooseMenu);
+		$(document).bind("keyup", chooseMenu).bind("keyup", escaper);
 	});
 });
 </script>
 </head>
 <body>
 <div id="mainMenu">
+</div>
+<div id="gameFields">
 </div>
 </body>
 </html>
