@@ -34,11 +34,13 @@ $(function onLoad() {
 			}).done(function(data) {
 				var d = $(data);
 				console.log("d", d);
+				/*
 				var menu = d.find("menu");
 				console.log("menu", menu);
 				var div = $("<div>");
 				div.html(menu.html());
 				$("#mainMenu").append(div);
+				*/
 				fulfill();
 			});
 		});
