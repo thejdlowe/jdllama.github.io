@@ -33,11 +33,11 @@ $(function onLoad() {
 				url: filename
 			}).done(function(data) {
 				var d = $(data);
-				var menu = d.find("menu")[0];
-				alert(menu.html());
+				console.log("d", d);
+				var menu = d.find("menu");
+				console.log("menu", menu);
 				var div = $("<div>");
 				div.html(menu.html());
-				console.log(div);
 				$("#mainMenu").append(div);
 				fulfill();
 			});
