@@ -27,6 +27,8 @@ $(function onLoad() {
 	var escapeFunction = function() {
 	}
 	
+	var commands = {};
+	
 	function toMainMenu() {
 		$("#gameFields").children().hide();
 		$("#mainMenu").show();
@@ -47,6 +49,13 @@ $(function onLoad() {
 				div.html(menu.html());
 				div.attr("data-id", menu.attr("id"));
 				$("#mainMenu").append(div);
+				
+				var gameField = $("<div>");
+				gameField.html(d.find("content").html())
+				gameField.attr("id", menu.attr("id"));
+				$("#gameFields").append(gameField);
+				gameField.hide();
+				$("body").append(d.find("script"));
 				fulfill();
 			});
 		});
@@ -62,7 +71,8 @@ $(function onLoad() {
 		if(e.keyCode == 32) {
 			var currIndex = $("#mainMenu").slick("slickCurrentSlide");
 			var currSlide = $("#mainMenu").find("[data-slick-index=" + currIndex + "]");
-			console.log("curr", currSlide.attr("data-id"));
+			var id = currSlide.attr("data-id");
+			commands[id]();
 		}
 	}
 	readMenuModules(["modules/buttonMash.html","modules/comingSoon.html"]).done(function() {
