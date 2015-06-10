@@ -11,8 +11,8 @@
 	right: 0;
 }
 #mainMenu div {
-	width: 98%;
-	height: 100%;
+	width: 90%;
+	height: 90%;
 	background-color: gray;
 	
 }
@@ -32,17 +32,11 @@ $(function onLoad() {
 			$.ajax({
 				url: filename
 			}).done(function(data) {
-				var d = $(data + "");
-				console.log("d", d);
-				
-				console.log("data", data);
-				
+				var d = $(data);
 				var menu = d.find("menu");
-				console.log("menu", menu);
-				/*var div = $("<div>");
+				var div = $("<div>");
 				div.html(menu.html());
 				$("#mainMenu").append(div);
-				*/
 				fulfill();
 			});
 		});
