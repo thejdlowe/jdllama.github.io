@@ -32,7 +32,7 @@ $(function onLoad() {
 			$.ajax({
 				url: filename
 			}).done(function(data) {
-				var d = $(data);
+				var d = $(data + "");
 				console.log("d", d);
 				
 				var menu = d.find("menu");
