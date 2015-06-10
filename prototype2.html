@@ -29,8 +29,6 @@ $(function onLoad() {
 	var escapeFunction = function() {
 	}
 	
-	
-	
 	function toMainMenu() {
 		$("#gameFields").children().hide();
 		$("#mainMenu").show();
@@ -76,6 +74,7 @@ $(function onLoad() {
 			var currSlide = $("#mainMenu").find("[data-slick-index=" + currIndex + "]");
 			var id = currSlide.attr("data-id");
 			commands[id]();
+			escapeFunction = toMainMenu;
 		}
 	}
 	readMenuModules(["modules/buttonMash.html","modules/comingSoon.html"]).done(function() {
