@@ -34,6 +34,7 @@ $(function onLoad() {
 			}).done(function(data) {
 				var d = $(data);
 				var menu = d.find("menu");
+				alert(menu.html());
 				var div = $("<div>");
 				div.html(menu.html());
 				console.log(div);
