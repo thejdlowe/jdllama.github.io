@@ -2,6 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <link rel="stylesheet" type="text/css" href="slick-1.5.0/slick/slick.css"/>
+<style>
+#mainMenu {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+#mainMenu div {
+	width: 98%;
+	height: 100%;
+	background-color: gray;
+	
+}
+</style>
 <script src="scripts/jquery-1.11.3.min.js"></script>
 <script src="slick-1.5.0/slick/slick.min.js"></script>
 <script>
@@ -13,20 +28,24 @@ $(function onLoad() {
 		return Promise.all(filenames.map(readMenu));
 	}
 	function readMenu(filename) {
-		//console.log(filename)
 		return new Promise(function(fulfill, reject) {
-			//console.log(filename);
-			//fulfill();
 			$.ajax({
 				url: filename
 			}).done(function(data) {
-				console.log(data);
+				var d = $(data);
+				var menu = d.find("menu");
+				var div = $("<div>");
+				div.html(menu.html());
+				$("#mainMenu").append(div);
 				fulfill();
 			});
 		});
 	}
-	readMenuModules(["modules/buttonMash.html"]).done(function() {
-		console.log("Done");
+	readMenuModules(["modules/buttonMash.html","modules/comingSoon.html"]).done(function() {
+		$("#mainMenu").slick({
+			centerMode: true,
+			slidesToShow: 1
+		});
 	});
 });
 </script>
