@@ -14,7 +14,6 @@
 	width: 90%;
 	height: 90%;
 	background-color: gray;
-	
 }
 </style>
 <script src="scripts/jquery-1.11.3.min.js"></script>
@@ -78,7 +77,10 @@ $(function onLoad() {
 		}
 	}
 	readMenuModules(["modules/buttonMash.html","modules/comingSoon.html"]).done(function() {
-		$("#mainMenu").slick({
+		$("#mainMenu,#gameFields").show();
+		$("#loading").hide();
+		
+		$("#mainMenu").focus().slick({
 			centerMode: true,
 			slidesToShow: 1,
 			arrows: false,
@@ -90,9 +92,12 @@ $(function onLoad() {
 </script>
 </head>
 <body>
-<div id="mainMenu">
+<div id="loading">
+Loading...
 </div>
-<div id="gameFields">
+<div id="mainMenu" style="display:none">
+</div>
+<div id="gameFields" style="display:none">
 </div>
 </body>
 </html>
