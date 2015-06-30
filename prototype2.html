@@ -79,7 +79,7 @@ $(function onLoad() {
 	readMenuModules(["modules/buttonMash.html","modules/comingSoon.html"]).done(function() {
 		$("#mainMenu,#gameFields").show();
 		$("#loading").hide();
-		$("#mainMenu").click().slick({
+		$("#mainMenu").trigger("click").slick({
 			centerMode: true,
 			slidesToShow: 1,
 			arrows: false,
