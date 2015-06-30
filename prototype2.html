@@ -79,13 +79,14 @@ $(function onLoad() {
 	readMenuModules(["modules/buttonMash.html","modules/comingSoon.html"]).done(function() {
 		$("#mainMenu,#gameFields").show();
 		$("#loading").hide();
-		$("#mainMenu").trigger("click").slick({
+		$("#mainMenu").slick({
 			centerMode: true,
 			slidesToShow: 1,
 			arrows: false,
 			centerPadding: "160px"
 		});
 		$(document).bind("keyup", chooseMenu).bind("keyup", escaper);
+		#("#gameFields").click();
 	});
 });
 </script>
