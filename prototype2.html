@@ -87,7 +87,7 @@ $(function onLoad() {
 			focusOnSelect: true
 		});
 		$(document).bind("keyup", chooseMenu).bind("keyup", escaper);
-		$("#mainMenu .slick-list").click();
+		$("#mainMenu .slick-list").focus();
 	});
 });
 </script>
@@ -96,7 +96,7 @@ $(function onLoad() {
 <div id="loading">
 Loading...
 </div>
-<div id="mainMenu" tabindex='1' style="display:none">
+<div id="mainMenu" style="display:none">
 </div>
 <div id="gameFields" style="display:none">
 </div>
